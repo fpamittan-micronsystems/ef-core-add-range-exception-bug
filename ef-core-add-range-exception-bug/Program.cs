@@ -49,9 +49,10 @@ namespace ef_core_add_range_exception_bug
                     new SampleModel { PkFirst = 3525, PkSecond = 381, PkThird = 11, NonPk = "" },
                     new SampleModel { PkFirst = 3525, PkSecond = 381, PkThird = 12, NonPk = "" },
                     new SampleModel { PkFirst = 3497, PkSecond = 381, PkThird = 1, NonPk = "" },
+                    new SampleModel { PkFirst = 3497, PkSecond = 381, PkThird = 2, NonPk = "" },
                 };
 
-                context.SampleModels.UpdateRange(toAdd);
+                context.SampleModels.AddRange(toAdd);
 
                 var isSaved = false;
                 do
@@ -62,7 +63,7 @@ namespace ef_core_add_range_exception_bug
                         isSaved = true;
                     }
                     catch (DbUpdateException ex)
-                        {
+                    {
                         foreach (var entry in ex.Entries)
                         {
                             entry.State = EntityState.Detached;
